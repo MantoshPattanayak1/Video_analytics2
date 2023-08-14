@@ -36,3 +36,97 @@
     transform: rotate(360deg);
   }
 }
+
+
+.app {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.video-list {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.video-player {
+  flex: 2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.video-uploader {
+  margin-top: 20px;
+}
+
+.video-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.video-card:hover {
+  background-color: #f4f4f4;
+}
+
+.video-card img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+
+
+
+.video-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.video-player iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+}
+
+
+.video-uploader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.video-uploader input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.video-uploader button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.video-uploader button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
