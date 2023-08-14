@@ -20,13 +20,14 @@ const upload = multer({ storage });
 // Serve uploaded files from the 'uploads' directory
 app.use(cors());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// app.use('/backend/uploads', express.static(path.join(__dirname, 'uploads')));
-console.log(__dirname)
+
+
 // Handle file upload
 app.post('/backend/upload', upload.single('file'), (req, res) => {
     console.log('File received:', req.file);
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });
+    console.log(__dirname)
   }
 
   // Construct the response with uploaded file details
