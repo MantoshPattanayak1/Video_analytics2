@@ -68,8 +68,15 @@ function VideoUploader({ onUpload }) {
         console.log('Response status:', response.status);
       
         if (response.ok) {
+          
           const videoData = await response.json();
+          // console.log(videoData,'kdshfvksdhfkvshkf')
+          // // videoData.thumbnail = `${videoData.thumbnailUrl}`; // Adjust the file extension if needed
+
+          videoData.title = videoData.filename; // Set the title based on the filename
+          // videoData.thumbnail = '/path/to/thumbnail';
           onUpload(videoData);
+          console.log('Uploaded Video Data:', videoData);
           setSelectedFile(null);
         } else {
           console.error('Failed to upload video');

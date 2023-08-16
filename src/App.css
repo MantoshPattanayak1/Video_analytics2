@@ -130,3 +130,8 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.videos{
+display: flex;
+flex-direction: row-reverse;
+}
