@@ -5,7 +5,7 @@ const fs = require('fs'); // Add this import for the File System module
 const app = express();
 const cors = require('cors'); // Add this import for the CORS module
 const port = 3001; // Change this to your desired port
-
+const { storeFilePath } = require('./filePaths.js'); // Import the storeFilePath function
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: path.join(__dirname, 'uploads'),
@@ -26,8 +26,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.post('/backend/upload', upload.single('file'), (req, res) => {
     console.log('File received:', req.file);
   if (!req.file) {
-    return res.status(400).json({ error: 'No file uploaded' });
     console.log(__dirname)
+    return res.status(400).json({ error: 'No file uploaded' });
+    
   }
 
   // Construct the response with uploaded file details
@@ -39,6 +40,10 @@ app.post('/backend/upload', upload.single('file'), (req, res) => {
     thumbnailUrl: `/uploads/${req.file.filename}`, // Replace with actual thumbnail URL
   };
 
+    // Store the path in the text file
+    storeFilePath(uploadedFile.thumbnailUrl);
+    
+        console.log(uploadedFile.url)
   res.status(200).json(uploadedFile);
 });
 
