@@ -6,20 +6,23 @@ const app = express();
 const cors = require('cors'); // Add this import for the CORS module
 const port = 3001; // Change this to your desired port
 const { storeFilePath } = require('./filePaths.js'); // Import the storeFilePath function
+
 // Set up storage for uploaded files
+
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, 'uploads'),
+  destination: "C:\\Users\\KIIT\\Desktop\\video_processing\\uploads",
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
-const uploadsDirectory = path.join(__dirname, 'uploads');
-
+const uploadsDirectory =  "C:\\Users\\KIIT\\Desktop\\video_processing\\uploads"
 const upload = multer({ storage });
 
 // Serve uploaded files from the 'uploads' directory
 app.use(cors());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use('/uploads', express.static("C:\\Users\\KIIT\\Desktop\\video_processing\\uploads"));
 
 
 // Handle file upload
@@ -39,7 +42,7 @@ app.post('/backend/upload', upload.single('file'), (req, res) => {
     url: `/uploads/${req.file.filename}`,
     thumbnailUrl: `/uploads/${req.file.filename}`, // Replace with actual thumbnail URL
   };
-
+    console.log(uploadedFile.thumbnailUrl,'1111118')
     // Store the path in the text file
     storeFilePath(uploadedFile.thumbnailUrl);
     
