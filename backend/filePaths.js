@@ -8,7 +8,7 @@ const uploadDirectory = path.join(__dirname, 'uploads');
 
 
 
-function storeFilePath(filePath) {
+function storeFilePath(filePath,category) {
   // Read the existing contents of the text file
   let existingContents = '';
   try {
@@ -21,9 +21,7 @@ function storeFilePath(filePath) {
   const lines = existingContents.trim().split('\n');
 
   // Replace the last line with the current file path
-  lines[lines.length - 1] = filePath;
-
-  // Write the updated contents back to the file
+  lines[lines.length - 1] = `${filePath},${category}`;  // Write the updated contents back to the file
   try {
     fs.writeFileSync(filePathtxt, lines.join('\n'), 'utf-8');
   } catch (error) {

@@ -48,18 +48,23 @@ import React, { useState } from 'react';
 
 function VideoUploader({ onUpload }) {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('fire'); 
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
   const handleUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile|| !selectedCategory) return;
 
     try {
         const formData = new FormData();
         formData.append('file', selectedFile);
-      
+        formData.append('category', selectedCategory);
         const response = await fetch('http://localhost:3001/backend/upload', {
           method: 'POST',
           body: formData,
@@ -90,6 +95,11 @@ function VideoUploader({ onUpload }) {
   return (
     <div className="video-uploader">
       <input type="file" accept="video/*" onChange={handleFileChange} />
+      <select value={selectedCategory} onChange={handleCategoryChange}>
+        <option value="fire">Fire</option>
+        <option value="crowd">Crowd</option>
+        <option value="wrong_parking">Wrong Parking</option>
+      </select>
       <button onClick={handleUpload} disabled={!selectedFile}>
         Upload
       </button>

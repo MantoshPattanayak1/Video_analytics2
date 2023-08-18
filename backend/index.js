@@ -27,6 +27,7 @@ app.use('/uploads', express.static("C:\\Users\\KIIT\\Desktop\\video_processing\\
 
 // Handle file upload
 app.post('/backend/upload', upload.single('file'), (req, res) => {
+  const selectedCategory = req.body.category;
     console.log('File received:', req.file);
   if (!req.file) {
     console.log(__dirname)
@@ -44,7 +45,7 @@ app.post('/backend/upload', upload.single('file'), (req, res) => {
   };
     console.log(uploadedFile.thumbnailUrl,'1111118')
     // Store the path in the text file
-    storeFilePath(uploadedFile.thumbnailUrl);
+    storeFilePath(uploadedFile.thumbnailUrl,selectedCategory);
     
         console.log(uploadedFile.url)
   res.status(200).json(uploadedFile);
